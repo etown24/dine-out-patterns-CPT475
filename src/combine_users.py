@@ -3,6 +3,7 @@ import pandas as pd
 
 # does not work 
 # trying to get all user location files and combine them into one csv
+# needs more work
 def combine_user_files():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     data_folder = os.path.join("..", "data", "users","locations")

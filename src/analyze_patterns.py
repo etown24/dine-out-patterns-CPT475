@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 
+# analyze dining patterns from matched visits 
 def analyze_patterns():
     data_path = os.path.join("..", "data", "matched_visits.csv")
     output_path = os.path.join("..", "results", "summaries", "time_distribution.csv")
