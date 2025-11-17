@@ -1,11 +1,20 @@
 import pandas as pd
 import os
 
-# analyze dining patterns from matched visits 
+# analyze dining patterns from matched visits
 def analyze_patterns():
-    data_path = os.path.join("..", "data", "matched_visits.csv")
-    output_path = os.path.join("..", "results", "summaries", "time_distribution.csv")
+    # Resolve paths relative to this script so running from anywhere works
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    project_dir = os.path.abspath(os.path.join(base_dir, ".."))
+    data_path = os.path.join(project_dir, "data", "matched_visits.csv")
+    output_path = os.path.join(project_dir, "results", "summaries", "time_distribution.csv")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    if not os.path.exists(data_path):
+        raise FileNotFoundError(
+            f"Required data file not found: {data_path}\n"
+            "Run `match_restaurants.py` to generate `matched_visits.csv` before analyzing."
+        )
 
     df = pd.read_csv(data_path, parse_dates=["datetime"])
     df["hour"] = df["datetime"].dt.hour
